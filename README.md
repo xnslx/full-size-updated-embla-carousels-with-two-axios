@@ -1,2 +1,2 @@
-# full-size-updated-embla-carousels-with-two-axios
+# horizontal-slides-with-vertical-scroll-embla-carousel
 Created with CodeSandbox
