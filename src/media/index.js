@@ -6,22 +6,36 @@ import media5 from "./media-5.jpeg";
 
 export const media = [media1, media2, media3, media4, media5];
 export const mediaByIndex = (index) => media[index % media.length];
-
+export const media6 = "https://vimeo.com/621078885";
 export const List = [
   {
-    containerOne: [media1, media2, media3]
+    containerOne: [
+      { type: "image", media: media1 },
+      { type: "image", media: media2 },
+      { type: "video", media: media6 }
+    ]
   },
   {
-    containerTwo: [media1, media2, media3, media4]
+    containerTwo: [
+      { type: "image", media: media1 },
+      { type: "image", media: media3 },
+      { type: "video", media: media6 }
+    ]
   },
   {
-    containerThree: [media1, media2, media3, media4, media5]
+    containerThree: [
+      { type: "image", media: media4 },
+      { type: "image", media: media2 },
+      { type: "video", media: media6 }
+    ]
   }
 ];
 
 export const mediaArray = List.map((i) => {
   return Object.values(i)[0];
 });
+
+console.log("mediaArray ", mediaArray);
 
 export const mediaArrayTitle = List.map((i) => {
   return Object.keys(i)[0];

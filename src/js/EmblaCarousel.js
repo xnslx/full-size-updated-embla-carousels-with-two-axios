@@ -6,6 +6,7 @@ import "../css/embla.css";
 import { List } from "../media/index";
 
 const NestedCarousel = ({ slides, setLockParentScroll }) => {
+  console.log("nested", slides);
   const [viewportRef, embla] = useEmblaCarousel({
     axis: "y",
     skipSnaps: false
@@ -43,18 +44,33 @@ const NestedCarousel = ({ slides, setLockParentScroll }) => {
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container__nested">
             {slides.map((s, index) => {
-              // return <img className="" src={s} alt="A cool cat." key={index} />;
-              return (
-                <div className="embla__slide__nested" key={index}>
-                  <div className="embla__slide__inner__nested">
-                    <img
-                      className="embla__slide__img__nested"
-                      src={s}
-                      alt="A cool cat."
-                    />
-                  </div>
-                </div>
-              );
+              console.log("47", s);
+              switch (s.type) {
+                case "image":
+                  return (
+                    <div className="embla__slide__nested" key={index}>
+                      <div className="embla__slide__inner__nested">
+                        <img
+                          className="embla__slide__img__nested"
+                          src={s.media}
+                          alt="A cool cat."
+                        />
+                      </div>
+                    </div>
+                  );
+                case "video":
+                  return (
+                    <iframe
+                      class="embla__slide__iframe"
+                      data-src={s.media}
+                      src={s.media}
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  );
+                  defualt: return null;
+              }
             })}
           </div>
         </div>
@@ -100,7 +116,9 @@ const EmblaCarousel = () => {
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
             {List.map((s, index) => {
+              console.log("s", Object.values(s));
               return Object.values(s).map((j, index) => {
+                console.log("j", j);
                 return (
                   <div className="embla__slide" key={index}>
                     <div>
