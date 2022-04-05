@@ -45,32 +45,7 @@ const NestedCarousel = ({ slides, setLockParentScroll }) => {
           <div className="embla__container__nested">
             {slides.map((s, index) => {
               console.log("47", s);
-              switch (s.type) {
-                case "image":
-                  return (
-                    <div className="embla__slide__nested" key={index}>
-                      <div className="embla__slide__inner__nested">
-                        <img
-                          className="embla__slide__img__nested"
-                          src={s.media}
-                          alt="A cool cat."
-                        />
-                      </div>
-                    </div>
-                  );
-                case "video":
-                  return (
-                    <iframe
-                      class="embla__slide__iframe"
-                      data-src={s.media}
-                      src={s.media}
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  );
-                  defualt: return null;
-              }
+              return <VariedTypeCarousel s={s} key={index} />;
             })}
           </div>
         </div>
@@ -89,6 +64,38 @@ const NestedCarousel = ({ slides, setLockParentScroll }) => {
       </div>
     </>
   );
+};
+
+const VariedTypeCarousel = ({ s, key }) => {
+  switch (s.type) {
+    case "image":
+      return (
+        <div className="embla__slide__nested" key={key}>
+          <div className="embla__slide__inner__nested">
+            <img
+              className="embla__slide__img__nested"
+              src={s.media}
+              alt="A cool cat."
+            />
+          </div>
+        </div>
+      );
+    case "video":
+      return (
+        <iframe
+          src={`https://player.vimeo.com/video/${621078885}?background=1&autoplay=1&autopause=0&loop=1&muted=1`}
+          frameBorder="0"
+          title="test video"
+          allow="autoplay; fullscreen"
+          style={{
+            height: "100vw",
+            minWidth: "100vh"
+          }}
+        ></iframe>
+      );
+    default:
+      return null;
+  }
 };
 
 const EmblaCarousel = () => {
